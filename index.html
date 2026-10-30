@@ -7,29 +7,18 @@
 :root{--navy:#071827;--ink:#17202b;--gold:#b58a16;--pale:#fff1bd;--muted:#65717d;--line:#e9edf0}
 *{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
 .top{background:var(--navy);color:#fff;text-align:center;padding:22px 16px;font-size:14px;letter-spacing:1.1px;line-height:1.5;text-transform:uppercase}
-.wrap{width:min(1080px,92%);margin:auto}
-.hero{padding:40px 0 65px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.cover-frame{background:var(--navy);padding:18px;border-radius:34px;box-shadow:0 18px 38px #0b1b2a20}
-.cover-frame img{display:block;width:100%;height:auto;max-height:590px;object-fit:contain;border-radius:18px;background:#fff}
+.wrap{width:min(1080px,92%);margin:auto}.hero{padding:40px 0 65px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.cover-frame{background:var(--navy);padding:18px;border-radius:34px;box-shadow:0 18px 38px #0b1b2a20}.cover-frame img{display:block;width:100%;height:auto;max-height:590px;object-fit:contain;border-radius:18px;background:#fff}
 .pill{display:inline-block;background:var(--pale);color:#73550a;border-radius:30px;padding:14px 22px;font-weight:800;font-size:16px;letter-spacing:.4px}
-h1{font-size:clamp(38px,5.5vw,66px);line-height:1.1;letter-spacing:-2px;margin:32px 0 22px;font-weight:800}
-h1 em{font-style:normal;color:var(--gold)}
-.lead{font-size:20px;line-height:1.8;color:var(--muted);margin:0 0 22px}
-.checks{list-style:none;padding:0;margin:20px 0 28px;color:#34404a;font-size:16px;line-height:1.9}
-.checks li:before{content:"✓";font-weight:900;color:#9b7715;margin-right:10px}
-.offer{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:24px 0 8px}
-.old{font-size:18px;color:#9299a0;text-decoration:line-through}
-.new{font-size:28px;font-weight:900;color:var(--navy)}
-.special{background:var(--pale);color:#795b0a;font-size:12px;font-weight:900;padding:7px 10px;border-radius:6px}
-.cta{display:inline-block;background:var(--navy);color:white;text-decoration:none;padding:18px 27px;border-radius:8px;font-weight:800;font-size:16px;box-shadow:0 8px 20px #07182725}
-.cta:hover{background:#142d43}.note{display:block;color:#7c8790;font-size:13px;margin-top:12px;line-height:1.6}
-.section{padding:58px 0;border-top:1px solid var(--line)}
-.kicker{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase}
-h2{font-size:clamp(29px,4vw,42px);letter-spacing:-1px;margin:13px 0 28px}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+h1{font-size:clamp(38px,5.5vw,66px);line-height:1.1;letter-spacing:-2px;margin:32px 0 22px;font-weight:800}h1 em{font-style:normal;color:var(--gold)}
+.lead{font-size:20px;line-height:1.8;color:var(--muted);margin:0 0 22px}.checks{list-style:none;padding:0;margin:20px 0 0;color:#34404a;font-size:16px;line-height:1.9}.checks li:before{content:"✓";font-weight:900;color:#9b7715;margin-right:10px}
+.section{padding:58px 0;border-top:1px solid var(--line)}.kicker{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase}
+h2{font-size:clamp(29px,4vw,42px);letter-spacing:-1px;margin:13px 0 28px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .feature{border:1px solid var(--line);border-radius:14px;padding:25px 22px;background:#fff;box-shadow:0 8px 25px #12223508}
 .ico{font-size:26px;margin-bottom:12px}.feature h3{font-size:19px;margin:0 0 10px}.feature p{font-size:15px;line-height:1.7;color:var(--muted);margin:0}
 .bottom{background:var(--navy);color:white;text-align:center;padding:58px 18px}.bottom p{color:#d5dce3;line-height:1.8;max-width:680px;margin:0 auto 24px}
+.price{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:24px 0}.price-old{font-size:18px;color:#b7c0c9;text-decoration:line-through}.price-new{font-size:32px;font-weight:900;color:#fff}.price-tag{background:var(--pale);color:#795b0a;font-size:12px;font-weight:900;padding:8px 11px;border-radius:6px}
+.cta{display:inline-block;background:#e8c75e;color:#142333;text-decoration:none;padding:19px 30px;border-radius:9px;font-weight:900;font-size:17px;box-shadow:0 8px 22px #0003}.cta:hover{background:#f4d978}.note{display:block;color:#c5d0d9;font-size:13px;margin-top:14px;line-height:1.6}
 footer{text-align:center;padding:20px;color:#8b949c;font-size:12px}
 @media(max-width:760px){.hero{grid-template-columns:1fr;gap:34px;padding:28px 0 48px}.cover-frame{padding:13px;border-radius:28px}.cover-frame img{max-height:none}h1{font-size:43px;letter-spacing:-1.4px;margin:28px 0 18px}.lead{font-size:18px}.features{grid-template-columns:1fr}.top{font-size:13px}.pill{font-size:14px}.section{padding:44px 0}}
 </style></head>
@@ -38,14 +27,10 @@ footer{text-align:center;padding:20px;color:#8b949c;font-size:12px}
 <main class="wrap">
 <section class="hero">
 <div class="cover-frame"><img src="cover.svg" alt="Couverture de L’art d’analyser les courses hippiques, Quinté+"></div>
-<div>
-<div class="pill">MÉTHODE • ANALYSE • SÉLECTION</div>
+<div><div class="pill">MÉTHODE • ANALYSE • SÉLECTION</div>
 <h1>L’art d’analyser <em>les courses hippiques</em> — Quinté+</h1>
 <p class="lead">Apprenez à mieux lire les informations d’une course, comparer les chevaux et construire une analyse plus structurée avant chaque Quinté+.</p>
 <ul class="checks"><li>Comprendre les informations essentielles avant une course.</li><li>Découvrir des critères de sélection pour comparer les concurrents.</li><li>Étudier les profils outsiders et organiser votre réflexion.</li></ul>
-<div class="offer"><span class="old">10 $ / 6 000 FCFA</span><span class="new">5 $ / 3 000 FCFA</span><span class="special">OFFRE SPÉCIALE</span></div>
-<a class="cta" href="https://lomopay.net/pay/c160b330" target="_blank" rel="noopener">Obtenir le guide maintenant →</a>
-<span class="note">Accédez à la fiche du livre et finalisez votre commande en toute simplicité.</span>
 </div></section>
 <section class="section"><div class="kicker">Le contenu du guide</div><h2>Un guide pour structurer votre analyse</h2>
 <p class="lead">Un support pratique pour mieux comprendre les courses hippiques et les critères qui peuvent compter dans une analyse.</p>
@@ -54,8 +39,10 @@ footer{text-align:center;padding:20px;color:#8b949c;font-size:12px}
 <article class="feature"><div class="ico">📊</div><h3>Les critères de sélection</h3><p>Apprenez à comparer les concurrents à partir d’indicateurs pertinents.</p></article>
 <article class="feature"><div class="ico">⭐</div><h3>Les chevaux outsiders</h3><p>Explorez les profils moins attendus et la façon de les intégrer à votre réflexion.</p></article>
 </div></section></main>
-<section class="bottom"><div class="wrap"><div class="kicker">Passez à l’étape suivante</div><h2>Passez à une analyse plus structurée</h2><p>Découvrez le contenu du guide et commandez votre exemplaire. Un support pour organiser vos observations, sans promesse de gains ni résultat garanti.</p>
-<div class="offer" style="justify-content:center"><span class="old">10 $ / 6 000 FCFA</span><span class="new" style="color:#fff">5 $ / 3 000 FCFA</span></div>
-<a class="cta" href="https://lomopay.net/pay/c160b330" target="_blank" rel="noopener">Commander le guide →</a></div></section>
+<section class="bottom"><div class="wrap"><div class="kicker">Offre spéciale</div><h2>Passez à une analyse plus structurée</h2>
+<p>Découvrez le contenu du guide et commandez votre exemplaire. Un support pour organiser vos observations, sans promesse de gains ni résultat garanti.</p>
+<div class="price"><span class="price-old">10 $ / 6 000 FCFA</span><span class="price-new">8,50 $ / 5 000 FCFA</span><span class="price-tag">PRIX ACTUEL</span></div>
+<a class="cta" href="https://lomopay.net/pay/c160b330" target="_blank" rel="noopener">Commander le guide maintenant →</a>
+<span class="note">Cliquez sur le bouton pour accéder au paiement sécurisé.</span></div></section>
 <footer>© 2026 · L’art d’analyser les courses hippiques</footer>
 </body></html>
