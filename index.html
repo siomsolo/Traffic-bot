@@ -43,6 +43,17 @@ footer{text-align:center;padding:20px;color:#8b949c;font-size:12px}
 <p>Découvrez le contenu du guide et commandez votre exemplaire. Un support pratique pour approfondir votre méthode d’analyse des courses hippiques.</p>
 <div class="price"><span class="price-old">10 $ / 6 000 FCFA</span><span class="price-new">8,50 $ / 5 000 FCFA</span><span class="price-tag">PRIX ACTUEL</span></div>
 <a class="cta" href="https://lomopay.net/pay/c160b330" target="_blank" rel="noopener">Commander le guide maintenant →</a>
+<script>
+(function(){
+  const key="qbg_sid";
+  let sid=sessionStorage.getItem(key);
+  if(!sid){sid=(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random());sessionStorage.setItem(key,sid);}
+  function send(event){try{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event:event,session_id:sid,path:location.pathname}),keepalive:true});}catch(e){}}
+  if(!sessionStorage.getItem('qbg_view_sent')){send('page_view');sessionStorage.setItem('qbg_view_sent','1');}
+  const buy=document.querySelector('.cta');
+  if(buy){buy.addEventListener('click',function(){send('purchase_click');});}
+})();
+</script>
 <span class="note">Cliquez sur le bouton pour accéder au paiement sécurisé.</span></div></section>
 <footer>© 2026 · L’art d’analyser les courses hippiques</footer>
 </body></html>
