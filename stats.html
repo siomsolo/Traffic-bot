@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>إحصائيات صفحة الكتاب الجديدة</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;color:#17202b;margin:0;padding:20px}.wrap{max-width:900px;margin:auto}.head{background:#071827;color:white;padding:22px;border-radius:14px;margin-bottom:18px}h1{font-size:24px;margin:0 0 8px}.muted{color:#b9c5cf;font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:white;border:1px solid #e5e9ed;border-radius:12px;padding:18px}.num{font-size:32px;font-weight:800;margin-top:10px;color:#a17b17}.label{color:#5e6872;font-size:14px}table{width:100%;border-collapse:collapse;background:white;margin-top:16px;border-radius:12px;overflow:hidden}td,th{padding:12px;text-align:right;border-bottom:1px solid #edf0f2;font-size:14px}button{background:#071827;color:white;border:0;border-radius:8px;padding:12px 18px;margin:14px 0;cursor:pointer}.error{color:#b42318}@media(max-width:600px){.grid{grid-template-columns:1fr}.num{font-size:28px}}
+</style></head><body><main class="wrap"><header class="head"><h1>إحصائيات صفحة الكتاب الجديدة</h1><div class="muted">متابعة مستقلة للزيارات والنقرات على زر الشراء — آخر 30 يوماً</div></header>
+<section class="grid"><article class="card"><div class="label">إجمالي الزيارات</div><div class="num" id="views">—</div></article><article class="card"><div class="label">نقرات زر الشراء</div><div class="num" id="clicks">—</div></article><article class="card"><div class="label">نسبة النقر إلى الشراء</div><div class="num" id="rate">—</div></article></section>
+<button onclick="load()">تحديث الإحصائيات</button><div id="status" class="muted"></div>
+<table><thead><tr><th>اليوم</th><th>الزيارات</th><th>نقرات الشراء</th></tr></thead><tbody id="days"><tr><td colspan="3">جارٍ التحميل…</td></tr></tbody></table>
+<p class="muted" style="color:#697580">ملاحظة: النقرات تعني الضغط على زر الانتقال إلى الدفع، ولا تعني إتمام عملية الدفع.</p></main>
+<script>
+const KEY="qbg-stats-2026-10-31-private";
+async function load(){document.getElementById('status').textContent='جارٍ تحديث البيانات…';try{const r=await fetch('/api/stats?key='+KEY,{cache:'no-store'});if(!r.ok)throw new Error('تعذر تحميل الإحصائيات');const d=await r.json();document.getElementById('views').textContent=d.views;document.getElementById('clicks').textContent=d.clicks;document.getElementById('rate').textContent=d.rate+'%';document.getElementById('days').innerHTML=d.days.map(x=>'<tr><td>'+x.day+'</td><td>'+x.views+'</td><td>'+x.clicks+'</td></tr>').join('')||'<tr><td colspan="3">لا توجد بيانات بعد</td></tr>';document.getElementById('status').textContent='آخر تحديث: '+new Date().toLocaleString('ar');}catch(e){document.getElementById('status').textContent=e.message;document.getElementById('status').className='error';}}
+load();
+</script></body></html>
