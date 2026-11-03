@@ -1,4 +1,4 @@
-const MODEL = "gemini-3.8-flash-tts";
+const MODEL = "gemini-3.8-flash-lite-tts";
 const MAX_TEXT_CHARS = 1800;
 
 function json(data, status = 200, origin = "") {
@@ -56,7 +56,7 @@ export async function onRequest(context) {
 
   try {
     const upstream = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
+      "https://generativelanguage.googleapis.com/v1beta/interactions",
       {
         method: "POST",
         headers: {
@@ -64,23 +64,25 @@ export async function onRequest(context) {
           "x-goog-api-key": env.GEMINI_API_KEY
         },
         body: JSON.stringify({
-          contents: [{
-            role: "user",
-            parts: [{
+          model: MODEL,
+          input: [{
+            type: "user_input",
+            content: [{
+              type: "text",
               text,
-              speech_metadata: { style }
+              annotations: [{
+                type: "speech_metadata",
+                style
+              }]
             }]
           }],
-          generationConfig: {
-            responseModalities: ["AUDIO"],
-            speechConfig: {
-              voiceConfig: { voice: "Kore" }
-            }
+          response_format: { type: "audio" },
+          generation_config: {
+            speech_config: [{ voice: "Kore" }]
           }
         })
       }
     );
-
     const data = await upstream.json().catch(() => ({}));
     if (!upstream.ok) {
       const detail = data?.error?.message || "Gemini TTS request failed.";
@@ -93,11 +95,14 @@ export async function onRequest(context) {
       }, upstream.status === 429 ? 429 : 502, origin);
     }
 
-    const parts = (data.candidates || []).flatMap(c => c.content?.parts || []);
-    const audioPart = parts.find(p => p.inlineData?.data);
-    if (!audioPart) return json({ error: "لم يُرجع Gemini ملفًا صوتيًا." }, 502, origin);
+    const audioItem = (data.steps || [])
+      .filter(step => step.type === "model_output")
+      .flatMap(step => step.content || [])
+      .filter(item => item.type === "audio" && item.data)
+      .at(-1);
+    if (!audioItem) return json({ error: "لم يُرجع Gemini ملفًا صوتيًا." }, 502, origin);
 
-    const binary = Uint8Array.from(atob(audioPart.inlineData.data), c => c.charCodeAt(0));
+    const binary = Uint8Array.from(atob(audioItem.data), c => c.charCodeAt(0));
     return new Response(binary, {
       status: 200,
       headers: {
