@@ -15,12 +15,17 @@ Mobile-first Arabic/English/French voice-assistant PWA prototype.
 - A PWA cannot guarantee background listening or direct access to headset internals.
 - TV control requires device-specific official APIs, compatible network/account permissions, and testing.
 
-## Deploy
-This folder is a static Cloudflare Pages site. Set build command empty and output directory to `nova-ai`, or deploy this folder's contents as the project root. Add an API Worker URL later in NOVA Settings. Keep all provider keys on the server as Worker secrets.
+## Gemini backend
+- Cloudflare Pages Function: `functions/api/chat.js` (route `/api/chat`).
+- Model: `gemini-3.5-flash-lite` via Google's `generateContent` API.
+- Add a Cloudflare Pages Secret named `GEMINI_API_KEY` before testing. Never put the key in frontend code, GitHub, or the NOVA settings field.
+- The frontend defaults to `/api/chat`; the settings field is only for changing the endpoint.
+- `GET /api/chat` reports whether the secret is configured; `POST /api/chat` sends chat requests to Gemini.
+- The function limits message/history sizes and output tokens. Add proper rate limiting and abuse protection before public launch.
 
 ## Next steps
 1. Verify the static deployment and test on Android Chrome.
 2. Test microphone/speech output with multiple Bluetooth headsets.
-3. Create a Cloudflare Worker `/chat` endpoint using an available AI binding or an explicitly configured provider.
+3. Add `GEMINI_API_KEY` as an encrypted Pages Secret and test `/api/chat`.
 4. Add rate limiting and usage controls before public access.
 5. Implement Google Cast / TV integration only after testing official supported APIs.
